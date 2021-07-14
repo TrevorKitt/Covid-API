@@ -7,10 +7,16 @@ window = tk.Tk()
 window.geometry("800x400")
 window.title("Covid stats")
 
-for index in response.json()["Countries"]:
-    if index['Country'] == "Canada":
-        print(index)
+def show_data(country_name):
+    for index in response.json()["Countries"]:
+        if index['Country'] == country_name:
+            country_label = tk.Label(window, font="Ariel 20", text=country_name)
+            country_label.pack()
+            total_confirmed = index["TotalConfirmed"]
+            confirmed_label = tk.Label(window, font="Ariel 10", text='Total confirmed covid cases: ' + str(total_confirmed))
+            confirmed_label.pack()
 
-print("My change")
+show_data("Canada")
+
 
 window.mainloop()
